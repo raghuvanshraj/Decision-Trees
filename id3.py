@@ -38,8 +38,8 @@ def subtables(data, col, delete):
                 dictionary[items[x]][pos] = data[y]
                 pos += 1
     
-    if delete:
-        dictionary[items[x]] = np.delete(dictionary[items[x]], col, 1)
+        if delete:
+            dictionary[items[x]] = np.delete(dictionary[items[x]], col, 1)
         
     return items, dictionary
 

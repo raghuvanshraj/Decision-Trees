@@ -29,12 +29,9 @@ def subtables(data, col, delete):
         for y in range(data.shape[0]):
             if data[y, col] == items[x]:
                 count[x] += 1
-    
-    #print(count)
-    #print(items)
             
     for x in range(items.shape[0]):
-        dictionary[items[x]] = np.empty((count[x], data.shape[1]), dtype='<U8')
+        dictionary[items[x]] = np.empty((count[x][0], data.shape[1]), dtype='S32')
         pos = 0
         for y in range(data.shape[0]):
             if data[y, col] == items[x]:
@@ -56,7 +53,7 @@ def entropy(S):
     sums = 0
     
     for x in range(items.shape[0]):
-        counts[x] = sum(S == items[x]) / S.size()
+        counts[x] = sum(S == items[x]) / S.shape[0]
         
     for count in counts:
         sums += -1 * count * log(count, 2)
@@ -69,8 +66,7 @@ def info_gain(data, col):
     entropies = np.zeros((items.shape[0], 1))
     
     for x in range(items.shape[0]):
-        ratio = dictionary[items[x]].shape[0] / (items[x].shape[0])
-        entropies[x] = ratio * entropy(dictionary[items[x]][:, -1])
+        entropies[x] = entropy(dictionary[items[x]][:, -1])
         
     total_entropy = entropy(data[:, -1])
     

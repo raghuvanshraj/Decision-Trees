@@ -113,8 +113,9 @@ def print_tree(node, level):
     for value, n in node.children:
         print(empty(level + 1), value)
         print_tree(n, level + 2)
-        
-metadata, traindata = read_data()
+       
+filename = input()
+metadata, traindata = read_data(filename)
 data = np.asarray(traindata)
 node = build_tree(data, metadata)
 print_tree(node, 0)

@@ -8,9 +8,9 @@ Created on Mon Aug 27 22:52:00 2018
 
 import csv
 
-def read_data():
+def read_data(filename):
 
-    with open('playtennis.data', 'r') as csvfile:
+    with open(filename, 'r') as csvfile:
         datareader = csv.reader(csvfile, delimiter=',')
         headers = next(datareader)
         metadata = []
